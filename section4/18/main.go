@@ -28,4 +28,18 @@ func main() {
 		fmt.Println(arr2[2-1]) // arr2[1]と同じ
 		fmt.Println(arr2[2-2])
 		fmt.Println(arr3[3-1]) // [要素数-1]にすると、配列の最後の要素を取得できる
+
+		// 配列の値の更新
+		arr2[2] = "C" // arr2のインデックス番号2の値をCにする
+		fmt.Println(arr2)
+
+		var arr5 [4]int
+		// arr5 = arr1 arr5の型は[4]intでarr1の型は[3]intで、型が違うからエラーになる
+		fmt.Println(arr5)
+
+		var arr6 [3]int
+		arr6 = arr1
+		fmt.Println(arr6)
+		arr6 = [3]int{1, 2}
+		fmt.Println(arr6)
 }
