@@ -42,4 +42,7 @@ func main() {
 		fmt.Println(arr6)
 		arr6 = [3]int{1, 2}
 		fmt.Println(arr6)
+
+		// 配列の要素数を調べる
+		fmt.Println(len(arr1)) // len(変数名)で要素数を数えることができる
 }
