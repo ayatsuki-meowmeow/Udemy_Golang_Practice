@@ -11,6 +11,17 @@ func anything(a interface{}) {
 		fmt.Println(a)
 }
 
+func anything2(a interface{}) {
+		// 型アサーションを使って型を復元する
+		// 型を復元しているので、数値の計算や文字列の結合などができる
+		switch v := a.(type) { // vにanyの値を代入する
+		case string:
+				fmt.Println(v + "!?")
+		case int:
+				fmt.Println(v + 10000)
+		}
+}
+
 // 型アサーションを使って型を復元すれば、数値の計算や文字列の結合などができる
 
 func main() {
@@ -46,5 +57,26 @@ func main() {
 		}
 
 		// switch文で型アサーションを使う
+		// if文より簡単に書ける
+		switch x.(type) {
+		case int: // xの型がint型の場合
+				fmt.Println("int")
+		case string: // xの型がstring型の場合
+				fmt.Println("string")
+		default: // どれにも当てはまらない場合
+				fmt.Println("I don't know")
+		}
 
+		// switch文で値も取得する
+		switch v := x.(type) { // vにxの値を代入する
+		case bool:
+				fmt.Println(v, "bool")
+		case int:
+				fmt.Println(v, "int")
+		case string:
+				fmt.Println(v, "string")
+		}
+
+		anything2("aaa")
+		anything2(1)
 }
