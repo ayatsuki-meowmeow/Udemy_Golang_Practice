@@ -33,6 +33,7 @@ func main() {
 
 		// チャネルにデータを送る
 		for i := 0; i < 100; i++ {
+				// チャネルに送信すると同時に、recieverが受け取る
 			  ch1 <- i
 				ch2 <- i
 				time.Sleep(50*time.Millisecond)
@@ -40,10 +41,11 @@ func main() {
 
 		// ゴルーチンの実行順序やチャネルの受け渡しのタイミングによって、出力結果は飛び飛びになる
 		// iが99の時、ch2には100が渡されるので、100が出力される
-		// 正直下のやつはよくわからん
 		var i int = 0
 		for i < 100 {
 				ch1 <- i
+				// ここで待たないと、順番が保証されない
+				time.Sleep(50*time.Millisecond)
 				i++
 				ch2 <- i
 				time.Sleep(50*time.Millisecond)
