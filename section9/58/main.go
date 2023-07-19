@@ -39,4 +39,47 @@ func main() {
 		default: // どちらも受信できない場合
 				fmt.Println("どちらも受信できません")
 		}
+
+		// selectの活用例
+		// 出力結果は実行する度に変わる
+
+		ch3 := make(chan int)
+		ch4 := make(chan int)
+		ch5 := make(chan int)
+
+		// reciever
+		go func() {
+				for {
+						i := <- ch3 // 3.ch3から受信した値をiに代入
+						ch4 <- i * 2 // 4.ch4にiの2倍の値を送信
+				}
+		}() // 無名関数は()で即時実行できる
+
+		go func() {
+				for {
+						var i2 int = <- ch4 // 5.ch4から受信した値をi2に代入
+						ch5 <- i2 - 1 // 6.ch5にi2の1減らした値を送信
+				}
+		}()
+
+		// main
+		n := 0
+		L:
+		for {
+				select {
+				case ch3 <- n: // 1.ch3にnの値を送信
+						n++ // 2.nをインクリメント
+				case i3 := <- ch5: // 7.ch5から受信した値をi3に代入
+						fmt.Println("recieved", i3, n) // 8.i3とnの値を出力
+				// Lがないとbreakできない
+				default:
+						if n > 100 {
+								break L // nが100を超えたら終了
+						}
+				}
+				// 下記のように、defaultを使わずif文でbreakすることもできる
+				// if n > 100 {
+				// 	break // nが100を超えたら終了
+				// }
+		}
 }
