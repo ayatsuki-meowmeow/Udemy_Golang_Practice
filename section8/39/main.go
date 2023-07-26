@@ -2,6 +2,7 @@ package main
 
 // switch
 // 型スイッチ
+// interface型の活用
 
 import "fmt"
 
