@@ -9,8 +9,8 @@ import (
 func main() {
 		// ファイル操作
 		// Read
-		f, err := os.Open("B.txt") // os.Open()は、ファイルを開く関数。fは、ファイルを受け取る変数
-		if err != nil { // B.txtが同じディレクトリーに存在しない場合、エラーが発生する
+		f, err := os.Open("../77-5/B.txt") // os.Open()は、ファイルを開く関数。fは、ファイルを受け取る変数
+		if err != nil { // B.txtが存在しない場合、エラーが発生する
 				log.Fatalln(err) // open B.txt: no such file or directory exit status 1
 		}
 
