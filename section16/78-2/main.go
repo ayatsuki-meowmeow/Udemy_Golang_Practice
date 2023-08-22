@@ -30,5 +30,6 @@ func main() {
 		t3 := time.Now()
 		// 現在時刻から2分15秒後の時刻を取得する
 		t3 = t3.Add(2*time.Minute + 15*time.Second)
+		// 現在時刻から2分15秒前の時刻をtime.Time型で表示する
 		fmt.Println(t3)
 }
